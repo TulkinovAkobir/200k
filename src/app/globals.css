@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition-all duration-200 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none select-none;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-brand-600 to-violet-500 text-white shadow-lift hover:shadow-glow hover:brightness-[1.05];
+  }
+  .btn-accent {
+    @apply btn bg-gradient-to-r from-accent-500 to-accent-400 text-white shadow-[0_14px_30px_-12px_rgba(255,122,0,0.6)] hover:brightness-105;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-ink ring-1 ring-gray-200 hover:ring-brand-300 hover:text-brand-600;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-white hover:bg-gray-800;
+  }
+  .btn-lg {
+    @apply px-6 text-[15px];
+    height: 52px;
+  }
+  .btn-md {
+    @apply h-11 px-5 text-sm;
+  }
+  .btn-sm {
+    @apply h-9 px-3.5 text-[13px];
+  }
+
+  .card {
+    @apply rounded-3xl bg-white shadow-card;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold leading-none;
+  }
+
+  .input {
+    @apply h-12 w-full rounded-2xl border border-gray-200 bg-white px-4 text-[15px] text-ink placeholder:text-gray-400 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10;
+  }
+  .label {
+    @apply mb-1.5 block text-[13px] font-semibold text-gray-700;
+  }
+
+  .section-title {
+    @apply text-2xl font-extrabold tracking-tight text-ink sm:text-[28px];
+  }
+  .section-sub {
+    @apply mt-1 text-[15px] text-muted;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-gray-100;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+  }
+}
